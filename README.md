@@ -1,1 +1,1 @@
-# Backend for MongoDB Graphical User Interface
+# Backend of MongoDB Graphical User Interface
