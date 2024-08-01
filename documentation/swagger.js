@@ -1,4 +1,5 @@
-const commonSwagger = require("./commonSwagger");
+const databaseSwagger = require("./databaseSwagger");
+const collectionSwagger = require("./collectionSwagger");
 const documentSwagger = require("./documentSwagger");
 
 module.exports = {
@@ -6,20 +7,11 @@ module.exports = {
   info: {
     title: "MongoUI",
     version: "1.0.0",
-    description: "Documentation for MongoUI API",
-  },
-  components: {
-    securitySchemes: {
-      Authorization: {
-        type: "http",
-        scheme: "bearer",
-        bearerFormat: "JWT",
-        value: "Bearer <JWT token here>",
-      },
-    },
+    description: "Documentation for MongoDB GUI API",
   },
   paths: {
-    ...commonSwagger.paths, // Import annotations for common routes
+    ...databaseSwagger.paths, // Import annotations for database routes
+    ...collectionSwagger.paths, // Import annotations for collection routes
     ...documentSwagger.paths, // Import annotations for document routes
   },
 };

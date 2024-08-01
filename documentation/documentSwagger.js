@@ -1,8 +1,8 @@
 module.exports = {
   paths: {
-    "/api/{dbName}/{collectionName}": {
+    "/api/databases/{dbName}/collections/{collectionName}/documents": {
       get: {
-        tags: ["Document"],
+        tags: ["Documents"],
         summary: "Retrieve all documents from a collection",
         description:
           "Retrieve all documents from a specified collection within a database.",
@@ -25,15 +25,6 @@ module.exports = {
               type: "string",
             },
           },
-          {
-            in: "query",
-            name: "documentId",
-            required: false,
-            description: "The ID of a specific document (optional)",
-            schema: {
-              type: "string",
-            },
-          },
         ],
         responses: {
           200: {
@@ -45,10 +36,30 @@ module.exports = {
         },
       },
       post: {
-        tags: ["Document"],
+        tags: ["Documents"],
         summary: "Insert or update documents in bulk",
         description:
           "Insert or update multiple documents in a specified collection.",
+        parameters: [
+          {
+            in: "path",
+            name: "dbName",
+            required: true,
+            description: "The name of the database",
+            schema: {
+              type: "string",
+            },
+          },
+          {
+            in: "path",
+            name: "collectionName",
+            required: true,
+            description: "The name of the collection",
+            schema: {
+              type: "string",
+            },
+          },
+        ],
         requestBody: {
           required: true,
           content: {
@@ -72,7 +83,7 @@ module.exports = {
         },
       },
       put: {
-        tags: ["Document"],
+        tags: ["Documents"],
         summary: "Replace a document",
         description:
           "Replace a document in the specified collection by its ID.",
@@ -125,9 +136,9 @@ module.exports = {
         },
       },
     },
-    "/api/{dbName}/{collectionName}/filter": {
+    "/api/databases/{dbName}/collections/{collectionName}/documents/filter": {
       post: {
-        tags: ["Document"],
+        tags: ["Documents"],
         summary: "Filter documents",
         description:
           "Filter documents in a specified collection based on a query.",
@@ -171,9 +182,9 @@ module.exports = {
         },
       },
     },
-    "/api/{dbName}/{collectionName}/count": {
+    "/api/databases/{dbName}/collections/{collectionName}/documents/count": {
       post: {
-        tags: ["Document"],
+        tags: ["Documents"],
         summary: "Count documents",
         description:
           "Count documents in a specified collection based on a query.",
@@ -217,9 +228,9 @@ module.exports = {
         },
       },
     },
-    "/api/{dbName}/{collectionName}/delete": {
-      post: {
-        tags: ["Document"],
+    "/api/databases/{dbName}/collections/{collectionName}/documents/delete": {
+      delete: {
+        tags: ["Documents"],
         summary: "Delete a document",
         description: "Delete a document from a specified collection by its ID.",
         parameters: [
@@ -248,13 +259,6 @@ module.exports = {
             "application/json": {
               schema: {
                 type: "object",
-                properties: {
-                  documentId: {
-                    type: "string",
-                    description: "The ID of the document to delete",
-                  },
-                },
-                required: ["documentId"],
               },
             },
           },
@@ -269,9 +273,9 @@ module.exports = {
         },
       },
     },
-    "/api/{dbName}/{collectionName}/aggregate": {
+    "/api/databases/{dbName}/collections/{collectionName}/documents/aggregate": {
       post: {
-        tags: ["Document"],
+        tags: ["Documents"],
         summary: "Aggregate documents",
         description:
           "Aggregate documents in a specified collection based on a pipeline.",
@@ -318,9 +322,9 @@ module.exports = {
         },
       },
     },
-    "/api/{dbName}/{collectionName}/generate-query": {
+    "/api/databases/{dbName}/collections/{collectionName}/documents/generate-query": {
       post: {
-        tags: ["Document"],
+        tags: ["Documents"],
         summary: "Generate query from prompt",
         description: "Generate a query based on a user-provided prompt.",
         parameters: [

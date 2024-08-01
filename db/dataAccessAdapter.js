@@ -12,7 +12,12 @@ class DataBase {
   }
 
   static InitDB(app) {
-    const url = argv.u || process.env.URL || "mongodb://0.0.0.0:27017";
+    const url =
+      argv.u ||
+      process.env.URL ||
+      (process.env.NODE_ENV === "development"
+        ? "mongodb://0.0.0.0:27017"
+        : "mongodb://mongo:27017");
 
     console.log(`> Connecting to mongoDB @ ${url}`);
     mongoClient

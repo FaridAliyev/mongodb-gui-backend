@@ -4,7 +4,7 @@ function listDatabases(req, res, next) {
   const adminDB = dataAccessAdapter.ConnectToDb('test').admin();
   adminDB.listDatabases({})
     .then(data => {
-      if (!req.query.includeCollections) return res.send(data);
+      if (req.query.includeCollections !== 'true') return res.send(data);
       const promises = data.databases.map(db => new Promise((resolve, reject) => {
         const database = dataAccessAdapter.ConnectToDb(db.name);
         database.listCollections().toArray()

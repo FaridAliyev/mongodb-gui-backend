@@ -17,6 +17,6 @@ router.get('/', commonCtrl.listCollections);
 router.post('/', commonCtrl.createCollection);
 
 // drop collection
-router.post('/delete', commonCtrl.dropCollection);
+router.delete('/delete', commonCtrl.dropCollection);
 
 module.exports = router;

@@ -9,7 +9,7 @@ router.use('/(:documentId)?', documentCtrl.middleware);
 router.get('/', documentCtrl.find);
 
 // findById or findOne
-router.get('(/:documentId)?', documentCtrl.findOne);
+router.get('/(:documentId)?', documentCtrl.findOne);
 
 // filter
 router.post('/filter', documentCtrl.filter);
@@ -30,7 +30,7 @@ router.post('/', documentCtrl.bulkWrite);
 router.put('/(:documentId)?', documentCtrl.replaceOne);
 
 // deleteOne
-router.post('/delete', documentCtrl.deleteOne);
+router.delete('/delete', documentCtrl.deleteOne);
 
 // aggregations
 router.post('/aggregate', documentCtrl.aggregate);
