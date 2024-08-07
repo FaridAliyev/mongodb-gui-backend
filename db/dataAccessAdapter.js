@@ -24,7 +24,7 @@ class DataBase {
       .connect(url, { useUnifiedTopology: true })
       .then((client) => {
         if (!client) {
-          console.log("> Failed to connect mongoDB -  no client");
+          console.log("> Failed to connect mongoDB - no client");
           process.exit();
         } else {
           console.log("> Connected");
